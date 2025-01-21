@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{A6F18C6A-432E-4659-88CD-E2304EEFB346}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9595531E-78B0-4B90-A07E-22AE63E5A03D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{F513AEE4-98E1-471B-B8FB-8B85D94CC009}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eBookApp.MVC", "WebUI\eBookApp.MVC\eBookApp.MVC.csproj", "{FB5E553E-52EF-401A-845F-1F18781B7565}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eBookApp.DataAccessLayer", "Data\eBookApp.DataAccessLayer\eBookApp.DataAccessLayer.csproj", "{D80D3A19-442D-44C9-AD70-3ADFD4738CFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eBookApp.EntityLayer", "Models\eBookApp.EntityLayer\eBookApp.EntityLayer.csproj", "{11684447-7603-4A03-8F46-29E6FBF4B5DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB5E553E-52EF-401A-845F-1F18781B7565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5E553E-52EF-401A-845F-1F18781B7565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5E553E-52EF-401A-845F-1F18781B7565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5E553E-52EF-401A-845F-1F18781B7565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D80D3A19-442D-44C9-AD70-3ADFD4738CFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D80D3A19-442D-44C9-AD70-3ADFD4738CFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D80D3A19-442D-44C9-AD70-3ADFD4738CFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D80D3A19-442D-44C9-AD70-3ADFD4738CFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11684447-7603-4A03-8F46-29E6FBF4B5DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11684447-7603-4A03-8F46-29E6FBF4B5DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11684447-7603-4A03-8F46-29E6FBF4B5DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11684447-7603-4A03-8F46-29E6FBF4B5DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FB5E553E-52EF-401A-845F-1F18781B7565} = {A6F18C6A-432E-4659-88CD-E2304EEFB346}
+		{D80D3A19-442D-44C9-AD70-3ADFD4738CFA} = {9595531E-78B0-4B90-A07E-22AE63E5A03D}
+		{11684447-7603-4A03-8F46-29E6FBF4B5DC} = {F513AEE4-98E1-471B-B8FB-8B85D94CC009}
+	EndGlobalSection
+EndGlobal
