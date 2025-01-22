@@ -18,5 +18,10 @@ namespace eBookApp.MVC.Controllers
             List<Category> categoryList = _appDbContext.Categories.ToList();
             return View(categoryList);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
