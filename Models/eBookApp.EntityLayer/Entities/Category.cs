@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace eBookApp.EntityLayer.Entities
 {
-    public class Category : IEntitiy
+    public class Category : IEntity
     {
        
         public int Id { get; set ; }

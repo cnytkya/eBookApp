@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eBookApp.EntityLayer.Interface
 {
-    public interface IEntitiy
+    public interface IEntity
     {
         public int Id { get; set; }
     }
