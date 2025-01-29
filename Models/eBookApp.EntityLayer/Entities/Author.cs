@@ -12,6 +12,6 @@ namespace eBookApp.EntityLayer.Entities
         public bool IsActive { get; set; }
         public int OrderNo { get; set; }
         public DateTime CreatedDate { get; set; }
-        public IList? Products { get; set; }
+        public IList<Product>? Products { get; set; }
     }
 }

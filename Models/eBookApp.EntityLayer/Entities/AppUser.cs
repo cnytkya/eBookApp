@@ -10,7 +10,7 @@ public class AppUser : IEntity
     public string? Phone { get; set; }
     public string? UserName { get; set; }
 
-    //public string Image { get; set; }
+    public string? Image { get; set; }
     public bool IsActive { get; set; }
 
     public bool IsAdmin { get; set; }

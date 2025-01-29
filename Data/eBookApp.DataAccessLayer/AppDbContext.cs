@@ -1,5 +1,7 @@
 ﻿using eBookApp.EntityLayer.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using System.Reflection;
 
 namespace eBookApp.DataAccessLayer
 {
@@ -10,16 +12,27 @@ namespace eBookApp.DataAccessLayer
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Slider> Sliders { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasData(
-                new Category { Id = 1, Name = "Programming", OrderNo = 1 },
-                new Category { Id = 2, Name = "Databases", OrderNo = 2 },
-                new Category { Id = 3, Name = "Networking", OrderNo = 3 },
-                new Category { Id = 4, Name = "Security", OrderNo = 4 },
-                new Category { Id = 5, Name = "Web Development", OrderNo = 5 }
-            );
+            //Configure domain classes using modelBuilder here. Configuration ayarlarını buraya ekleyeceğiz.
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            //seed data
+            DataSeed.SeedData.AppUserSeedData(modelBuilder);
+            DataSeed.SeedData.CategorySeedData(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
