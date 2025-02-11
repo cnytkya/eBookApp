@@ -83,5 +83,52 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
             }
             return View(appUser);
         }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var appUser = await _context.AppUsers
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (appUser == null)
+            {
+                return NotFound();
+            }
+            return View(appUser);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var appUser = await _context.AppUsers.FindAsync(id);
+            _context.AppUsers.Remove(appUser);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var appUser = await _context.AppUsers
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (appUser == null)
+            {
+                return NotFound();
+            }
+
+            return View(appUser);
+        }
+
+        private bool AppUserExists(int id)
+        {
+            return _context.AppUsers.Any(e => e.Id == id);
+        }
     }
 }
