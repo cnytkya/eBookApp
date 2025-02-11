@@ -57,13 +57,13 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-1 flex-wrap">
-                                        <a class="btn btn-sm btn-primary" title="Update">
+                                        <a asp-action="Update" class="btn btn-sm btn-primary" title="Update">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a class="btn btn-sm btn-info" title="Details">
+                                        <a asp-action="Details" class="btn btn-sm btn-info" title="Details">
                                             <i class="fas fa-eye"></i>
-                                        </a> 
-                                        <a class="btn btn-sm btn-danger" title="Delete">
+                                        </a>
+                                        <a asp-action="Delete" class="btn btn-sm btn-danger" title="Delete">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </div>
@@ -72,6 +72,11 @@
                         }
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer bg-light ">
+                <div class="row">
+                    <p>Total Users: @Model.Count()</p>
+                </div>
             </div>
         </div>
     </div>
