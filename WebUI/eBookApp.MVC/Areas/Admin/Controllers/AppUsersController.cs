@@ -38,7 +38,7 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Update(int? id)
+        public async Task<IActionResult> Update(int? id) // https://localhost:7033/Admin/AppUsers/Update/1 bu endpoint kullanıcı eğer bir user için Update isteğinde bulunduğu zaman oluşur.
         {
             if (id == null)
             {
@@ -56,27 +56,27 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int id, AppUser appUser)
         {
-            if (id != appUser.Id)
+            if (id != appUser.Id) //eğer gelen userId ile appUser'ın Id'si eşit değilse
             {
-                return NotFound();
+                return NotFound(); //404 hatası döndür.
             }
-
             if (ModelState.IsValid)
             {
                 try
                 {
+                    //herhangi bir sorun yoksa bu blok çalışacak
                     _context.Update(appUser);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException) //eğer hata varsa buraya düşecek.
                 {
-                    if (!_context.AppUsers.Any(e => e.Id == id))
+                    if (!_context.AppUsers.Any(a => a.Id == id))
                     {
                         return NotFound();
                     }
                     else
                     {
-                        throw;
+                        throw; // throw ile hata fırlatıyoruz. Bu hata, uygulamamızın hata sayfasına düşecek.
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -84,14 +84,15 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
             return View(appUser);
         }
 
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var appUser = await _context.AppUsers
-                .FirstOrDefaultAsync(m => m.Id == id);
+            //var appUser = await _context.AppUsers.FindAsync(id);
+            var appUser = await _context.AppUsers.FirstOrDefaultAsync(a => a.Id == id);
             if (appUser == null)
             {
                 return NotFound();
@@ -109,26 +110,20 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var appUser = await _context.AppUsers
-                .FirstOrDefaultAsync(m => m.Id == id);
+            //var appUser = await _context.AppUsers.FindAsync(id);
+            var appUser = await _context.AppUsers.FirstOrDefaultAsync(a => a.Id == id);
             if (appUser == null)
             {
                 return NotFound();
             }
-
             return View(appUser);
-        }
-
-        private bool AppUserExists(int id)
-        {
-            return _context.AppUsers.Any(e => e.Id == id);
         }
     }
 }
