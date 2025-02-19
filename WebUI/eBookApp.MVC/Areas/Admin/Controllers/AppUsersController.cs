@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace eBookApp.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AppUsersController : Controller
+    public class AppUsersController : BaseController
     {
         private readonly AppDbContext _context;
 
@@ -32,6 +32,7 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
             {
                 _context.Add(appUser);
                 await _context.SaveChangesAsync();
+                SetNotification("Kullanıcı başarıyla eklendi.", "success");
                 return RedirectToAction(nameof(Index));
             }
             return View(appUser);
@@ -67,6 +68,7 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
                     //herhangi bir sorun yoksa bu blok çalışacak
                     _context.Update(appUser);
                     await _context.SaveChangesAsync();
+                    SetNotification("Kullanıcı başarıyla güncellendi.", "warning");
                 }
                 catch (DbUpdateConcurrencyException) //eğer hata varsa buraya düşecek.
                 {
@@ -107,6 +109,7 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
             var appUser = await _context.AppUsers.FindAsync(id);
             _context.AppUsers.Remove(appUser);
             await _context.SaveChangesAsync();
+            SetNotification("Kullanıcı başarıyla silindi.", "danger");
             return RedirectToAction(nameof(Index));
         }
 

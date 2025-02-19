@@ -18,6 +18,7 @@
         <partial name="_SideBar" />
         <div id="layoutSidenav_content">
             <main role="main">
+                @await Html.PartialAsync("_Notification")
                 @RenderBody()
             </main>
             <footer class="py-4 bg-light mt-auto">
