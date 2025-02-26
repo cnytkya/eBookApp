@@ -8,11 +8,11 @@ namespace eBookApp.DataAccessLayer.Configurations
     {
         public void Configure(EntityTypeBuilder<Author> builder)
         {
-            builder.Property(a => a.Name)
+            builder.Property(a => a.FirstName)
                 .IsRequired()
                 .HasMaxLength(50);
 
-            builder.Property(a => a.Logo)
+            builder.Property(a => a.Img)
                 .HasMaxLength(50);
         }
     }

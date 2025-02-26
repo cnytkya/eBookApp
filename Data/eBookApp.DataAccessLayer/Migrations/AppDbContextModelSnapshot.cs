@@ -71,7 +71,7 @@ namespace eBookApp.DataAccessLayer.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -81,14 +81,14 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 1, 29, 21, 30, 29, 175, DateTimeKind.Local).AddTicks(4858),
+                            CreatedDate = new DateTime(2025, 2, 24, 20, 9, 27, 495, DateTimeKind.Local).AddTicks(7515),
                             Email = "admin@gmail.com",
                             IsActive = true,
                             IsAdmin = true,
                             Name = "Test",
                             Password = "1234",
                             SurName = "Admin",
-                            UserGuid = new Guid("e6c0ee22-e5f9-45f0-aeb4-6ecef2036905"),
+                            UserGuid = new Guid("98ca239e-93ab-4864-82a6-96206e73bbd8"),
                             UserName = "Admin"
                         });
                 });
@@ -107,17 +107,21 @@ namespace eBookApp.DataAccessLayer.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Logo")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Img")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderNo")
                         .HasColumnType("int");
@@ -170,7 +174,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 1, 29, 21, 30, 29, 177, DateTimeKind.Local).AddTicks(3890),
+                            CreatedDate = new DateTime(2025, 2, 24, 20, 9, 27, 519, DateTimeKind.Local).AddTicks(3910),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Roman",
@@ -180,7 +184,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2025, 1, 29, 21, 30, 29, 177, DateTimeKind.Local).AddTicks(4692),
+                            CreatedDate = new DateTime(2025, 2, 24, 20, 9, 27, 520, DateTimeKind.Local).AddTicks(3519),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Hikaye",

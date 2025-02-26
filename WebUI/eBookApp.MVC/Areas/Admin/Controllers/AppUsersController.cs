@@ -39,7 +39,7 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Update(int? id) // https://localhost:7033/Admin/AppUsers/Update/1 bu endpoint kullanıcı eğer bir user için Update isteğinde bulunduğu zaman oluşur.
+        public async Task<IActionResult> Update(int? id) // https://localhost:7033/Admin/AppUsers/Update/1 bu endpoint kullanıcı bir user için Update isteğinde bulunduğu zaman oluşur.
         {
             if (id == null)
             {

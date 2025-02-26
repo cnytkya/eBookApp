@@ -18,4 +18,9 @@
     <ProjectReference Include="..\..\Data\eBookApp.DataAccessLayer\eBookApp.DataAccessLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\books\" />
+    <Folder Include="wwwroot\Images\authors\" />
+  </ItemGroup>
+
 </Project>
