@@ -20,5 +20,16 @@
             }
             return fileName;
         }
+
+        public static bool FileDeleter(string fileName, string filePath = "/Images/")
+        {
+            string directory = Directory.GetCurrentDirectory() + "/wwwroot/" + filePath + fileName;
+            if (File.Exists(directory))
+            {
+                File.Delete(directory);
+                return true;
+            }
+            return false;
+        }
     }
 }

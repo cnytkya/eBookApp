@@ -1,19 +1,37 @@
 ﻿using eBookApp.EntityLayer.Interface;
 using System.Collections;
+using System.ComponentModel;
 
 namespace eBookApp.EntityLayer.Entities
 {
     public class Category : IEntity
     {
         public int Id { get; set; }
+
+        [DisplayName("Category Name")]
         public string Name { get; set; }
+
+        [DisplayName("Description")]
         public string? Description { get; set; }
+
+        [DisplayName("Image")]
         public string? Image { get; set; }
+
+        [DisplayName("Is Active ?")]
         public bool IsActive { get; set; }
+
+        [DisplayName("Is Home ?")]
         public bool IsTopMenu { get; set; }
+
+        [DisplayName("Parent Category")]
         public int ParentId { get; set; }
+
+        [DisplayName("Order No")]
         public int OrderNo { get; set; }
+
+        [DisplayName("Created Date")]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+
         public IList<Product>? Products { get; set; } //her bir kategorinin birden fazla ürünü olabilir.
     }
 }

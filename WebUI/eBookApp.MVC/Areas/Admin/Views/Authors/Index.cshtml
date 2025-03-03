@@ -39,11 +39,12 @@
                         {
                             <tr>
                                 <td>
-                                    <img src="/Images/@Html.DisplayFor(modeluser => user.Img)" width="30px" height="30px" alt="Resim Yok"/>
+                                    <img src="/Images/@Html.DisplayFor(modeluser => user.Img)" width="30px" height="30px" alt="Resim Yok" />
                                 </td>
                                 <td>@Html.DisplayFor(modeluser => user.FirstName)</td>
                                 <td>@Html.DisplayFor(modeluser => user.LastName)</td>
-                                <td>@Html.DisplayFor(modeluser => user.Description)</td>
+                                <td>@(string.IsNullOrEmpty(user.Description) ? "No Description" : string.Join(" ", user.Description.Split(" ").Take(10)) + "...")</td>
+
 
                                 <td>
                                     @if (user.IsActive)
@@ -63,21 +64,18 @@
                                            title="Update"
                                            data-bs-toggle="tooltip">
                                             <i class="fas fa-edit"></i>
-                                            @* <span class="d-none d-lg-inline">Edit</span> *@
                                         </a>
                                         <a asp-action="Details" asp-route-id="@user.Id"
                                            class="btn btn-sm btn-info"
                                            title="Details"
                                            data-bs-toggle="tooltip">
                                             <i class="fas fa-eye"></i>
-                                            @* <span class="d-none d-lg-inline">Details</span> *@
                                         </a>
                                         <a asp-action="Delete" asp-route-id="@user.Id"
                                            class="btn btn-sm btn-danger"
                                            title="Delete"
                                            data-bs-toggle="tooltip">
                                             <i class="fas fa-trash-alt"></i>
-                                            @* <span class="d-none d-lg-inline">Delete</span> *@
                                         </a>
                                     </div>
                                 </td>
@@ -96,4 +94,3 @@
         </div>
     </div>
 </div>
-
