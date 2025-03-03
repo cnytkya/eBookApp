@@ -20,10 +20,10 @@ namespace eBookApp.EntityLayer.Entities
         [DisplayName("Is Active ?")]
         public bool IsActive { get; set; }
 
-        [DisplayName("Is Home ?")]
+        [DisplayName("Show in Top Menu")]
         public bool IsTopMenu { get; set; }
 
-        [DisplayName("Parent Category")]
+        [DisplayName("Top Category")]
         public int ParentId { get; set; }
 
         [DisplayName("Order No")]

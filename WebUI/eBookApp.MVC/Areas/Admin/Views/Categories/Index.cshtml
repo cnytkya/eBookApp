@@ -29,6 +29,8 @@
                             <th>@Html.DisplayNameFor(model => model.Name)</th>
                             <th>@Html.DisplayNameFor(model => model.Description)</th>
                             <th>@Html.DisplayNameFor(model => model.OrderNo)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsTopMenu)</th>
+                            <th>@Html.DisplayNameFor(model => model.ParentId)</th>
                             <th>Status</th>
                             <th class="d-none d-xl-table-cell">@Html.DisplayNameFor(model => model.CreatedDate)</th>
                             <th>Actions</th>
@@ -39,11 +41,13 @@
                         {
                             <tr>
                                 <td>
-                                    <img src="/Images/@Html.DisplayFor(modeluser => user.Image)" width="30px" height="30px" alt="Resim Yok" />
+                                    <img src="/Images/categories/@Html.DisplayFor(modeluser => user.Image)" width="30px" height="30px" alt="Resim Yok" />
                                 </td>
                                 <td>@Html.DisplayFor(modeluser => user.Name)</td>
                                 <td>@Html.DisplayFor(modeluser => user.Description)</td>
                                 <td>@Html.DisplayFor(modeluser => user.OrderNo)</td>
+                                <td>@Html.DisplayFor(modeluser => user.IsTopMenu)</td>
+                                <td>@Html.DisplayFor(modeluser => user.ParentId)</td>
 
                                 <td>
                                     @if (user.IsActive)
@@ -55,7 +59,7 @@
                                         <span class="badge bg-danger">Inactive</span>
                                     }
                                 </td>
-                                <td class="d-none d-xl-table-cell">@Html.DisplayFor(modeluser => user.CreatedDate)</td>
+                                <td class="d-none d-xl-table-cell">@user.CreatedDate.ToShortDateString()</td>
                                 <td>
                                     <div class="d-flex gap-1 flex-wrap">
                                         <a asp-action="Update" asp-route-id="@user.Id"
