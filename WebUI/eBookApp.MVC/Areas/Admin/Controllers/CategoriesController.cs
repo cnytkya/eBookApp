@@ -4,7 +4,6 @@ using eBookApp.MVC.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace eBookApp.MVC.Areas.Admin.Controllers
 {

@@ -32,6 +32,6 @@ namespace eBookApp.EntityLayer.Entities
         [DisplayName("Created Date")]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-        public IList<Product>? Products { get; set; } //her bir kategorinin birden fazla ürünü olabilir.
+        public IList<Books>? Books { get; set; } //her bir kategorinin birden fazla ürünü olabilir.
     }
 }
