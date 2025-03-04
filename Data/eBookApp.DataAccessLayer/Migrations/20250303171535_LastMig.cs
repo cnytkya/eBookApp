@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eBookApp.DataAccessLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class addedConfigurations : Migration
+    public partial class LastMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,9 +42,10 @@ namespace eBookApp.DataAccessLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Logo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Img = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     OrderNo = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -126,7 +127,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "Books",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -135,8 +136,9 @@ namespace eBookApp.DataAccessLayer.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ProductCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    BookCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false),
+                    ISBN = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsHome = table.Column<bool>(type: "bit", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: true),
@@ -146,15 +148,15 @@ namespace eBookApp.DataAccessLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Authors_AuthorId",
+                        name: "FK_Books_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
+                        name: "FK_Books_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id");
@@ -163,25 +165,25 @@ namespace eBookApp.DataAccessLayer.Migrations
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "Id", "CreatedDate", "Email", "Image", "IsActive", "IsAdmin", "Name", "Password", "Phone", "SurName", "UserGuid", "UserName" },
-                values: new object[] { 1, new DateTime(2025, 1, 29, 21, 30, 29, 175, DateTimeKind.Local).AddTicks(4858), "admin@gmail.com", null, true, true, "Test", "1234", null, "Admin", new Guid("e6c0ee22-e5f9-45f0-aeb4-6ecef2036905"), "Admin" });
+                values: new object[] { 1, new DateTime(2025, 3, 3, 20, 15, 34, 845, DateTimeKind.Local).AddTicks(104), "admin@gmail.com", null, true, true, "Test", "1234", null, "Admin", new Guid("0fe47849-5348-483c-bb62-7fe2c47c3c5a"), "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreatedDate", "Description", "Image", "IsActive", "IsTopMenu", "Name", "OrderNo", "ParentId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 1, 29, 21, 30, 29, 177, DateTimeKind.Local).AddTicks(3890), null, null, true, true, "Roman", 1, 0 },
-                    { 2, new DateTime(2025, 1, 29, 21, 30, 29, 177, DateTimeKind.Local).AddTicks(4692), null, null, true, true, "Hikaye", 2, 0 }
+                    { 1, new DateTime(2025, 3, 3, 20, 15, 34, 868, DateTimeKind.Local).AddTicks(2283), null, null, true, true, "Roman", 1, 0 },
+                    { 2, new DateTime(2025, 3, 3, 20, 15, 34, 868, DateTimeKind.Local).AddTicks(3637), null, null, true, true, "Hikaye", 2, 0 }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_AuthorId",
-                table: "Products",
+                name: "IX_Books_AuthorId",
+                table: "Books",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryId",
-                table: "Products",
+                name: "IX_Books_CategoryId",
+                table: "Books",
                 column: "CategoryId");
         }
 
@@ -192,13 +194,13 @@ namespace eBookApp.DataAccessLayer.Migrations
                 name: "AppUsers");
 
             migrationBuilder.DropTable(
+                name: "Books");
+
+            migrationBuilder.DropTable(
                 name: "Contacts");
 
             migrationBuilder.DropTable(
                 name: "News");
-
-            migrationBuilder.DropTable(
-                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Sliders");

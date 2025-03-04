@@ -97,12 +97,12 @@
                         </div>
 
                         <!-- Product List (Opsiyonel) -->
-                        @if (Model.Products != null && Model.Products.Any())
+                        @if (Model.Books != null && Model.Books.Any())
                         {
                             <div class="col-12">
                                 <label class="fw-bold">Products in this Category:</label>
                                 <ul class="list-group">
-                                    @foreach (var product in Model.Products)
+                                    @foreach (var product in Model.Books)
                                     {
                                         <li class="list-group-item">@product.Name</li>
                                     }

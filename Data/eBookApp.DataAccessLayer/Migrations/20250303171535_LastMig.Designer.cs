@@ -12,8 +12,8 @@ using eBookApp.DataAccessLayer;
 namespace eBookApp.DataAccessLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250129183029_addedConfigurations")]
-    partial class addedConfigurations
+    [Migration("20250303171535_LastMig")]
+    partial class LastMig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,7 +74,7 @@ namespace eBookApp.DataAccessLayer.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(50)
-                        .HasColumnType("varchar(50");
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -84,14 +84,14 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 1, 29, 21, 30, 29, 175, DateTimeKind.Local).AddTicks(4858),
+                            CreatedDate = new DateTime(2025, 3, 3, 20, 15, 34, 845, DateTimeKind.Local).AddTicks(104),
                             Email = "admin@gmail.com",
                             IsActive = true,
                             IsAdmin = true,
                             Name = "Test",
                             Password = "1234",
                             SurName = "Admin",
-                            UserGuid = new Guid("e6c0ee22-e5f9-45f0-aeb4-6ecef2036905"),
+                            UserGuid = new Guid("0fe47849-5348-483c-bb62-7fe2c47c3c5a"),
                             UserName = "Admin"
                         });
                 });
@@ -110,17 +110,21 @@ namespace eBookApp.DataAccessLayer.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Logo")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Img")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderNo")
                         .HasColumnType("int");
@@ -128,6 +132,66 @@ namespace eBookApp.DataAccessLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("eBookApp.EntityLayer.Entities.Books", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BookCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ISBN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsHome")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("OrderNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("eBookApp.EntityLayer.Entities.Category", b =>
@@ -173,7 +237,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 1, 29, 21, 30, 29, 177, DateTimeKind.Local).AddTicks(3890),
+                            CreatedDate = new DateTime(2025, 3, 3, 20, 15, 34, 868, DateTimeKind.Local).AddTicks(2283),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Roman",
@@ -183,7 +247,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2025, 1, 29, 21, 30, 29, 177, DateTimeKind.Local).AddTicks(4692),
+                            CreatedDate = new DateTime(2025, 3, 3, 20, 15, 34, 868, DateTimeKind.Local).AddTicks(3637),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Hikaye",
@@ -262,63 +326,6 @@ namespace eBookApp.DataAccessLayer.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("eBookApp.EntityLayer.Entities.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsHome")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("OrderNo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ProductCode")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("Stock")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("eBookApp.EntityLayer.Entities.Slider", b =>
                 {
                     b.Property<int>("Id")
@@ -348,29 +355,31 @@ namespace eBookApp.DataAccessLayer.Migrations
                     b.ToTable("Sliders");
                 });
 
-            modelBuilder.Entity("eBookApp.EntityLayer.Entities.Product", b =>
+            modelBuilder.Entity("eBookApp.EntityLayer.Entities.Books", b =>
                 {
-                    b.HasOne("eBookApp.EntityLayer.Entities.Author", null)
-                        .WithMany("Products")
+                    b.HasOne("eBookApp.EntityLayer.Entities.Author", "Author")
+                        .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("eBookApp.EntityLayer.Entities.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany("Books")
                         .HasForeignKey("CategoryId");
+
+                    b.Navigation("Author");
 
                     b.Navigation("Category");
                 });
 
             modelBuilder.Entity("eBookApp.EntityLayer.Entities.Author", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("eBookApp.EntityLayer.Entities.Category", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Books");
                 });
 #pragma warning restore 612, 618
         }

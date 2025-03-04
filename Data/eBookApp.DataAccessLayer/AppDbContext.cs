@@ -13,10 +13,10 @@ namespace eBookApp.DataAccessLayer
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Books> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<Slider> Sliders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

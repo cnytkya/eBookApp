@@ -48,6 +48,6 @@ namespace eBookApp.EntityLayer.Entities
         public int OrderNo { get; set; }
 
         [Display(Name = "Created Date")]
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

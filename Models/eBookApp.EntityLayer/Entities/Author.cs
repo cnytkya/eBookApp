@@ -28,6 +28,6 @@ namespace eBookApp.EntityLayer.Entities
         [DisplayName("Created Date")]
         public DateTime CreatedDate { get; set; }
 
-        public IList<Product>? Products { get; set; }
+        public IList<Books>? Books { get; set; }
     }
 }

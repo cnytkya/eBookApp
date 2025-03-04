@@ -4,16 +4,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace eBookApp.DataAccessLayer.Configurations
 {
-    internal class ProductConfiguration : IEntityTypeConfiguration<Product>
+    internal class BooksConfiguration : IEntityTypeConfiguration<Books>
     {
-        public void Configure(EntityTypeBuilder<Product> builder)
+        public void Configure(EntityTypeBuilder<Books> builder)
         {
             builder.Property(p => p.Name)
                 .IsRequired()
                 .HasMaxLength(150);
             builder.Property(p => p.Image)
                 .HasMaxLength(100);
-            builder.Property(p => p.ProductCode)
+            builder.Property(p => p.BookCode)
                 .HasMaxLength(50);
         }
     }
