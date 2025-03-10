@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using eBookApp.DataAccessLayer;
 using eBookApp.EntityLayer.Entities;
 using eBookApp.MVC.Helpers;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace eBookApp.MVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class BooksController : Controller
+    public class BooksController : BaseController
     {
         private readonly AppDbContext _context;
 
@@ -46,6 +47,7 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
                 books.Image = await FileHelper.FileUploader(Image, "/Images/books/");
                 _context.Add(books);
                 await _context.SaveChangesAsync();
+                SetNotification("Kitap başarıyla eklendi.", "success");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AuthorId"] = new SelectList(_context.Authors, "Id", "FirstName", books.AuthorId);
@@ -74,7 +76,7 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
         // POST: Admin/Books/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Books books)
+        public async Task<IActionResult> Edit(int id, Books books, IFormFile? Image, bool DeleteImg = false)
         {
             if (id != books.Id)
             {
@@ -85,7 +87,14 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
             {
                 try
                 {
+                    if (DeleteImg)
+                    {
+                        books.Image = string.Empty;
+                    }
+                    if (Image is not null)
+                        books.Image = await FileHelper.FileUploader(Image, "/Images/books/");
                     _context.Update(books);
+                    SetNotification("Kitap başarıyla güncellendi.", "warning");
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -134,10 +143,15 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
             var books = await _context.Books.FindAsync(id);
             if (books != null)
             {
+                if (!string.IsNullOrEmpty(books.Image))
+                {
+                    FileHelper.FileDeleter(books.Image, "/Images/books/");
+                }
                 _context.Books.Remove(books);
             }
 
             await _context.SaveChangesAsync();
+            SetNotification("Kitap başarıyla silindi.", "danger");
             return RedirectToAction(nameof(Index));
         }
 
