@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace eBookApp.EntityLayer.Entities
         public string? Description { get; set; }
         public string? Image { get; set; }
         public bool IsActive { get; set; }
+
+        [DisplayName("Created Date")]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

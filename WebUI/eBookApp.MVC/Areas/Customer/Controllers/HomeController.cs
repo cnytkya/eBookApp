@@ -19,7 +19,7 @@ namespace eBookApp.MVC.Areas.Customer.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ContactUs()
         {
             return View();
         }
