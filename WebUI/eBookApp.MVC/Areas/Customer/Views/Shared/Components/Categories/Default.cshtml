@@ -1,15 +1,20 @@
 ﻿@model IEnumerable<Category>
 
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle text-dark" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Categories
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-        @foreach (var mainCategory in Model.Where(c => c.IsActive && c.IsTopMenu && c.ParentId == 0))
-        {
-            <li>
-                <a class="dropdown-item" asp-area="Customer" asp-controller="#" asp-action="#">@mainCategory.Name</a>
-            </li>
-        }
-    </ul>
-</li>
+@foreach (var mainCategory in Model.Where(c => c.IsActive && c.IsTopMenu && c.ParentId == 0))
+{
+    <div class="dropdown">
+        <a class="btn dropdown-toggle" asp-area="Customer" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            @mainCategory.Name
+        </a>
+        <ul class="dropdown-menu">
+            @foreach (var subCategory in Model.Where(c => c.IsActive && c.IsTopMenu && c.ParentId == mainCategory.Id))
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="Customer" asp-controller="Categories" asp-action="Index" asp-route-id="@subCategory.Id">
+                        @subCategory.Name
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+}
