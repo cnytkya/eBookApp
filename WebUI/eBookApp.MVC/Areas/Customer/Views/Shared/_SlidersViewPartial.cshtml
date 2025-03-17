@@ -1,0 +1,69 @@
+﻿@* Model olarak Slider listesi alınıyor. *@ 
+@model IEnumerable<Slider>
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <!-- Carousel göstergeleri (indicators) -->
+    <div class="carousel-indicators">
+        @for (int i = 0; i < Model.Count(); i++) @* Modeldeki her slider için bir indicator butonu oluşturuluyor.  *@
+        {
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@i"
+                    class="@(i == 0 ? "active" : "")" aria-label="Slide @(i + 1)"></button>
+            <!-- Her buton, carousel'deki ilgili slayta gidecek şekilde ayarlanıyor. İlk buton aktif olarak işaretleniyor. -->
+        }
+    </div>
+
+    <!-- Carousel içeriği -->
+    <div class="carousel-inner">
+        @foreach (var item in Model.ToList())  @* Modeldeki her slider için bir carousel item oluşturuluyor. *@
+        {
+            <div class="carousel-item @(item == Model.First() ? "active" : "")">
+                <!-- Her carousel item, ilk slider ise aktif olarak işaretleniyor. -->
+                <div class="d-flex align-items-center" style="height: 500px; background-color: #0f2d4b;">
+                    <!-- Resim alanı -->
+                    <div class="w-50 h-100 d-flex justify-content-center align-items-center">
+                        <img src="/Images/sliders/@item.Image" class="d-block img-fluid" alt="@item.Title"
+                             style="max-height: 100%; max-width: 100%;">
+                        <!-- Slider resmi, maksimum yükseklik ve genişlik sınırlamalarıyla gösteriliyor. -->
+                    </div>
+
+                    <!-- Sağ taraftaki kart alanı -->
+                    <div class="w-50 h-100 d-flex justify-content-center align-items-center" style="background-color:#494848;">
+                        <div class="card border-0 shadow" style="width: 80%;">
+                            <!-- Kart, gölge efektli ve kenarlıksız olarak oluşturuluyor. -->
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5> <!-- Slider başlığı gösteriliyor. -->
+
+                                @* Açıklamayı sadece 15 kelime göster ve devamını oku ekle *@
+                                @{
+                                    var words = item.Description.Split(' ');
+                                    <!-- Açıklama metni kelimelere ayrılıyor. -->
+                                    var shortDescription = words.Length > 15 ? string.Join(" ", words.Take(15)) + "..." : item.Description;
+                                    <!-- Eğer açıklama 15 kelimeden uzunsa, ilk 15 kelime alınıp sonuna "..." ekleniyor. Değilse, tüm açıklama gösteriliyor. -->
+                                }
+
+                                <p class="card-text">@shortDescription</p> <!-- Kısaltılmış açıklama gösteriliyor. -->
+                                @if (words.Length > 15) /* Eğer açıklama 15 kelimeden uzunsa, "Devamını oku" butonu ekleniyor.  */
+                                {
+                                    <a href="/Detail/@item.Id" class="btn btn-primary btn-sm">Devamını oku</a>
+                                    <!-- Buton, ilgili slider'ın detay sayfasına yönlendiriyor. -->
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Carousel önceki/sonraki butonları -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        <!-- Önceki slayta gitmek için buton. -->
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        <!-- Sonraki slayta gitmek için buton. -->
+    </button>
+</div>
