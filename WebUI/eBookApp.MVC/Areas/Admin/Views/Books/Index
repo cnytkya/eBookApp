@@ -1,0 +1,96 @@
+@model IEnumerable<Books>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5 class="mb-0">Books List</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-end">
+                        <a asp-action="Create" class="btn btn-success">Create New</a>
+                    </p>
+                    <div class="table-responsive">
+                        <table id="booksTable" class="table table-bordered table-hover">
+                            <thead class="table-dark text-center">
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.Image)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                                    <th>@Html.DisplayNameFor(model => model.BookCode)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Stock)</th>
+                                    <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                                    <th>@Html.DisplayNameFor(model => model.IsHome)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Category)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Author)</th>
+                                    <th>@Html.DisplayNameFor(model => model.CreatedDate)</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="text-center">
+                                        <td>
+                                            <img src="/Images/books/@item.Image" width="40px" height="40px" alt="Resim Yok" />
+                                        </td>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.BookCode)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.IsHome)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Author.FirstName)</td>
+                                        <td>@item.CreatedDate.ToShortDateString()</td>
+                                        <td class="d-flex gap-2 justify-content-center">
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm d-flex align-items-center" data-bs-toggle="tooltip" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                                <span class="ms-1 d-none d-md-inline">Edit</span>
+                                            </a>
+                                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm d-flex align-items-center" data-bs-toggle="tooltip" title="Details">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span class="ms-1 d-none d-md-inline">Details</span>
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm d-flex align-items-center" data-bs-toggle="tooltip" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                                <span class="ms-1 d-none d-md-inline">Delete</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery ve DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#booksTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "Tümü"]],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.13.6/i18n/Turkish.json"
+            }
+        });
+    });
+</script>
