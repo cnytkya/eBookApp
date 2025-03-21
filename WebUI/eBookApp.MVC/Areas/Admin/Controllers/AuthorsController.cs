@@ -36,7 +36,7 @@ namespace eBookApp.MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                author.Img = await FileHelper.FileUploader(Img);
+                author.Img = await FileHelper.FileUploader(Img, "/Images/authors/");
                 _context.Add(author);
                 await _context.SaveChangesAsync();
                 SetNotification("Yazar başarıyla eklendi.", "success");
