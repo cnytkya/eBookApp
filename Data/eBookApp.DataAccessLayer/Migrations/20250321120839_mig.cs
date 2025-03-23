@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eBookApp.DataAccessLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class LastMig : Migration
+    public partial class mig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -165,15 +165,15 @@ namespace eBookApp.DataAccessLayer.Migrations
             migrationBuilder.InsertData(
                 table: "AppUsers",
                 columns: new[] { "Id", "CreatedDate", "Email", "Image", "IsActive", "IsAdmin", "Name", "Password", "Phone", "SurName", "UserGuid", "UserName" },
-                values: new object[] { 1, new DateTime(2025, 3, 3, 20, 15, 34, 845, DateTimeKind.Local).AddTicks(104), "admin@gmail.com", null, true, true, "Test", "1234", null, "Admin", new Guid("0fe47849-5348-483c-bb62-7fe2c47c3c5a"), "Admin" });
+                values: new object[] { 1, new DateTime(2025, 3, 21, 15, 8, 32, 526, DateTimeKind.Local).AddTicks(8817), "admin@gmail.com", null, true, true, "Test", "1234", null, "Admin", new Guid("0d740555-b67b-4469-b591-7a38828faa67"), "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreatedDate", "Description", "Image", "IsActive", "IsTopMenu", "Name", "OrderNo", "ParentId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 3, 3, 20, 15, 34, 868, DateTimeKind.Local).AddTicks(2283), null, null, true, true, "Roman", 1, 0 },
-                    { 2, new DateTime(2025, 3, 3, 20, 15, 34, 868, DateTimeKind.Local).AddTicks(3637), null, null, true, true, "Hikaye", 2, 0 }
+                    { 1, new DateTime(2025, 3, 21, 15, 8, 32, 528, DateTimeKind.Local).AddTicks(2673), null, null, true, true, "Roman", 1, 0 },
+                    { 2, new DateTime(2025, 3, 21, 15, 8, 32, 528, DateTimeKind.Local).AddTicks(3243), null, null, true, true, "Hikaye", 2, 0 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -12,8 +12,8 @@ using eBookApp.DataAccessLayer;
 namespace eBookApp.DataAccessLayer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250303171535_LastMig")]
-    partial class LastMig
+    [Migration("20250321120839_mig")]
+    partial class mig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,14 +84,14 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 3, 3, 20, 15, 34, 845, DateTimeKind.Local).AddTicks(104),
+                            CreatedDate = new DateTime(2025, 3, 21, 15, 8, 32, 526, DateTimeKind.Local).AddTicks(8817),
                             Email = "admin@gmail.com",
                             IsActive = true,
                             IsAdmin = true,
                             Name = "Test",
                             Password = "1234",
                             SurName = "Admin",
-                            UserGuid = new Guid("0fe47849-5348-483c-bb62-7fe2c47c3c5a"),
+                            UserGuid = new Guid("0d740555-b67b-4469-b591-7a38828faa67"),
                             UserName = "Admin"
                         });
                 });
@@ -237,7 +237,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 3, 3, 20, 15, 34, 868, DateTimeKind.Local).AddTicks(2283),
+                            CreatedDate = new DateTime(2025, 3, 21, 15, 8, 32, 528, DateTimeKind.Local).AddTicks(2673),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Roman",
@@ -247,7 +247,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2025, 3, 3, 20, 15, 34, 868, DateTimeKind.Local).AddTicks(3637),
+                            CreatedDate = new DateTime(2025, 3, 21, 15, 8, 32, 528, DateTimeKind.Local).AddTicks(3243),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Hikaye",

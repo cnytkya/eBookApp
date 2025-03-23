@@ -81,14 +81,14 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 3, 10, 10, 10, 13, 686, DateTimeKind.Local).AddTicks(2959),
+                            CreatedDate = new DateTime(2025, 3, 21, 15, 8, 32, 526, DateTimeKind.Local).AddTicks(8817),
                             Email = "admin@gmail.com",
                             IsActive = true,
                             IsAdmin = true,
                             Name = "Test",
                             Password = "1234",
                             SurName = "Admin",
-                            UserGuid = new Guid("22466306-421a-4c1b-b46e-f73c83888a24"),
+                            UserGuid = new Guid("0d740555-b67b-4469-b591-7a38828faa67"),
                             UserName = "Admin"
                         });
                 });
@@ -234,7 +234,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2025, 3, 10, 10, 10, 13, 688, DateTimeKind.Local).AddTicks(2974),
+                            CreatedDate = new DateTime(2025, 3, 21, 15, 8, 32, 528, DateTimeKind.Local).AddTicks(2673),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Roman",
@@ -244,7 +244,7 @@ namespace eBookApp.DataAccessLayer.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2025, 3, 10, 10, 10, 13, 688, DateTimeKind.Local).AddTicks(3804),
+                            CreatedDate = new DateTime(2025, 3, 21, 15, 8, 32, 528, DateTimeKind.Local).AddTicks(3243),
                             IsActive = true,
                             IsTopMenu = true,
                             Name = "Hikaye",
